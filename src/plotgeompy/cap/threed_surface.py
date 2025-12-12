@@ -44,7 +44,11 @@ class MatrixConeSurface(ThreeDScene):
             y_range=[-4, 4, 1],
             z_range=[0, 2, 0.25],
         )
-        self.set_camera_orientation(phi=70 * DEGREES, theta=-60 * DEGREES)
+        axes.scale(0.8)
+        self.set_camera_orientation(phi=0 * DEGREES, theta=-60 * DEGREES, distance=60)
+        # self.camera.frame.scale(1.5)
+
+         # Add axes
         self.add(axes)
 
         # Orthonormal basis (u, v)
@@ -52,7 +56,7 @@ class MatrixConeSurface(ThreeDScene):
         v1 = np.array([0.0, 1.0])
 
         z_min = 0.0
-        z_max = 1.0
+        z_max = 1.5
         c = 1.0
 
         # Tracker for current top z
@@ -109,7 +113,7 @@ class MatrixConeSurface(ThreeDScene):
         # Animate from bottom to top: z_min -> z_max
         self.play(
             z_tracker.animate.set_value(z_max),
-            run_time=3,
+            run_time=5,
             rate_func=linear,
         )
         self.wait()
